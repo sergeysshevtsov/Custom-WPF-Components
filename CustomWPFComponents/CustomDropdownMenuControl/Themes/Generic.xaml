@@ -1,0 +1,41 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:CustomDropdownMenuControl">
+    <Style TargetType="{x:Type local:CustomDropdownMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CustomDropdownMenu}">
+                    <Grid>
+                        <CheckBox
+                            x:Name="cbHamburger"
+                            Cursor="Hand"
+                            IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                            <CheckBox.Template>
+                                <ControlTemplate TargetType="{x:Type CheckBox}">
+                                    <Grid Background="Transparent">
+                                        <Viewbox>
+                                            <Path
+                                                Data="M2.8 18.175v-2.15h18.45v2.15Zm0-5.125V10.9h18.45v2.15Zm0-5.075v-2.15h18.45v2.15Z"
+                                                Fill="Black"
+                                                Stretch="Fill" />
+                                        </Viewbox>
+                                    </Grid>
+                                </ControlTemplate>
+                            </CheckBox.Template>
+                        </CheckBox>
+
+                        <Popup
+                            AllowsTransparency="True"
+                            IsOpen="{TemplateBinding IsOpen}"
+                            Placement="Bottom"
+                            PlacementTarget="{Binding ElementName=cbHamburger}"
+                            StaysOpen="False">
+                            <ContentControl Content="{TemplateBinding Content}" />
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
